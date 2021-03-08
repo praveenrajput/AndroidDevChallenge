@@ -19,7 +19,11 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavController
-import androidx.navigation.compose.* // ktlint-disable no-wildcard-imports
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.popUpTo
+import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.components.CreateTimerSelection
 import com.example.androiddevchallenge.ui.components.Timer
 import com.example.androiddevchallenge.ui.components.TimerFinished
@@ -50,13 +54,23 @@ fun NavGraph(
         startDestination = startDestination
     ) {
         composable(Directions.SET_TIMER) {
-            CreateTimerSelection(timerViewModel = timerViewModel, playButtonId, actions.countDownTimer, actions.timerFinish)
+            CreateTimerSelection(
+                timerViewModel = timerViewModel,
+                playButtonId,
+                actions.countDownTimer,
+                actions.timerFinish
+            )
         }
         composable(Directions.COUNTDOWN_TIMER) {
             Timer(timerViewModel = timerViewModel, stopButtonId, actions.timerStop)
         }
         composable(Directions.STOP_TIMER) {
-            CreateTimerSelection(timerViewModel = timerViewModel, playButtonId, actions.countDownTimer, actions.timerFinish)
+            CreateTimerSelection(
+                timerViewModel = timerViewModel,
+                playButtonId,
+                actions.countDownTimer,
+                actions.timerFinish
+            )
         }
         composable(Directions.TIMER_FINISH) {
             TimerFinished(timerViewModel, alarmDrawableId, actions.timerSet)

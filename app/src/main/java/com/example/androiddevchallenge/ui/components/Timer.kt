@@ -15,7 +15,13 @@
  */
 package com.example.androiddevchallenge.ui.components
 
-import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.androiddevchallenge.countDownTimer
 import com.example.androiddevchallenge.formatTime
+import com.example.androiddevchallenge.ui.theme.typography
 import com.example.androiddevchallenge.viewModel.TimerViewModel
 
 @Composable
@@ -39,8 +46,8 @@ fun Timer(
     val angle: Float by timerViewModel.circleAngle.observeAsState(360F)
     Box(
         Modifier
-            .padding(16.dp)
-            .fillMaxHeight(),
+            .fillMaxHeight()
+            .background(MaterialTheme.colors.background)
     ) {
         ClockDial(
             Modifier
@@ -54,12 +61,14 @@ fun Timer(
         ) {
             Text(
                 text = formatTime(timer),
-                style = MaterialTheme.typography.h2,
+                style = typography.h2,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
         }
         Column(
-            Modifier.align(Alignment.BottomCenter)
+            Modifier
+                .align(Alignment.BottomCenter)
+                .padding(32.dp)
         ) {
             ImageButton(
                 drawable = drawable,

@@ -51,7 +51,7 @@ fun ClockDial(
             style = stroke
         )
         drawArc(
-            color = Color.Red,
+            color = Color(0xFFE53935),
             startAngle = -90f,
             sweepAngle = newAngle,
             topLeft = topLeft,

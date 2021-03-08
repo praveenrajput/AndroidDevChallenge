@@ -19,7 +19,14 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.androiddevchallenge.countDownTimer
 import com.example.androiddevchallenge.createTimer
+import com.example.androiddevchallenge.ui.theme.typography
 import com.example.androiddevchallenge.viewModel.TimerViewModel
 
 @Composable
@@ -74,8 +82,8 @@ fun CreateTimerSelection(
     val isTimerSet by timerViewModel.isTimerSet.observeAsState(false)
     Box(
         Modifier
-            .padding(16.dp)
             .fillMaxHeight()
+            .background(MaterialTheme.colors.background)
     ) {
         Row(
             modifier = Modifier
@@ -88,7 +96,7 @@ fun CreateTimerSelection(
             )
             Text(
                 text = " : ",
-                style = MaterialTheme.typography.h3,
+                style = typography.h3,
                 modifier = Modifier
                     .wrapContentWidth()
                     .padding(8.dp)
@@ -98,7 +106,7 @@ fun CreateTimerSelection(
             )
             Text(
                 text = " : ",
-                style = MaterialTheme.typography.h3,
+                style = typography.h3,
                 modifier = Modifier
                     .wrapContentWidth()
                     .padding(8.dp)
@@ -112,7 +120,8 @@ fun CreateTimerSelection(
             enter = fadeIn(),
             exit = fadeOut(),
             modifier = Modifier
-                .align(Alignment.BottomCenter),
+                .align(Alignment.BottomCenter)
+                .padding(32.dp)
         ) {
             ImageButton(
                 drawable = buttonDrawableId,

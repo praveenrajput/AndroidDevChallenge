@@ -15,15 +15,26 @@
  */
 package com.example.androiddevchallenge.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
-import androidx.compose.material.* // ktlint-disable no-wildcard-imports
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.DropdownMenu
+import androidx.compose.material.DropdownMenuItem
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.ui.theme.lightGrey
+import com.example.androiddevchallenge.ui.theme.typography
 
 @Composable
 fun DropDownList(
@@ -49,12 +60,13 @@ fun DropDownList(
                     it,
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.h3
+                    style = typography.h3
                 )
             }
         }
     }
 }
+
 @Composable
 fun Spinner(
     values: List<String>,
@@ -68,12 +80,18 @@ fun Spinner(
     }
     val userSelectedString: (String) -> Unit = onSelectionChange
 
-    Box() {
+    Box(
+        modifier = Modifier
+            .padding(6.dp)
+            .clip(shape = RoundedCornerShape(4.dp))
+            .background(lightGrey)
+    ) {
         Column {
             Text(
                 text = selected,
-                style = MaterialTheme.typography.h3,
-                modifier = Modifier.wrapContentWidth()
+                style = typography.h3,
+                modifier = Modifier
+                    .wrapContentWidth()
                     .padding(8.dp)
                     .clickable(
                         onClick = { isOpen.value = true }

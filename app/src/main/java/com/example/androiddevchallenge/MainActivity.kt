@@ -24,7 +24,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
+import androidx.compose.foundation.layout.Column
 import com.example.androiddevchallenge.navigationGraph.NavGraph
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.viewModel.TimerViewModel
@@ -95,22 +95,22 @@ class MainActivity : AppCompatActivity() {
 }
 
 fun createTimer(
-    homeViewModel: TimerViewModel,
+    timerViewModel: TimerViewModel,
     onTimerFinish: () -> Unit
 ): CountDownTimer {
-    val timeToElapse = homeViewModel.timeToElapseSeconds.value!!
+    val timeToElapse = timerViewModel.timeToElapseSeconds.value!!
     return object : CountDownTimer(
         timeToElapse * 1000,
         1000
     ) {
         override fun onTick(millisUntilFinished: Long) {
-            homeViewModel.onTimerChanged(millisUntilFinished / 1000)
-            homeViewModel.onCircleAngleChange(millisUntilFinished / 1000)
+            timerViewModel.onTimerChanged(millisUntilFinished / 1000)
+            timerViewModel.onCircleAngleChange(millisUntilFinished / 1000)
         }
 
         override fun onFinish() {
-            homeViewModel.onTimerChanged(0L)
-            homeViewModel.onCircleAngleChange(0L)
+            timerViewModel.onTimerChanged(0L)
+            timerViewModel.onCircleAngleChange(0L)
             onTimerFinish()
         }
     }
